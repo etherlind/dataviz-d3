@@ -90,7 +90,6 @@ const update = data => {
             dY0.distance = 0;
             dX0.date = d3.min(data).date;
 
-            console.log(dX0);
             dottedLine.data([
                     [dX0, d, dY0]
                 ])
