@@ -26,8 +26,39 @@ const data = [
     { name: 'classical', parent: 'music', amount: 5 },
 ];
 
+
+const svg = d3.select('.canvas')
+    .append('svg')
+    .attr('width', 1060)
+    .attr('height', 800);
+
+const graph = svg.append('g')
+    .attr('transform', 'translate(50,50)');
+
 const stratify = d3.stratify()
     .id(d => d.name)
     .parentId(d => d.parent)
 
-console.log(stratify(data));
+const rootNode = stratify(data)
+    .sum(d => d.amount);
+
+const pack = d3.pack()
+    .size([960, 700])
+    .padding(5);
+
+const bubbleData = pack(rootNode).descendants();
+console.log(bubbleData);
+
+// join data and add group for each node
+const nodes = graph.selectAll('g')
+    .data(bubbleData)
+    .enter()
+    .append('g')
+    .attr('transform', d => `translate(${d.x},${d.y})`);
+
+nodes.append('circle')
+    .attr('r', d => d.r)
+    .attr('stroke', 'white')
+    .attr('stroke-width', 2)
+    .attr('fill', 'purple');
+
