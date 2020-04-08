@@ -4,21 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>Data Hierarchy</title>
-    <style>
-        text {
-            font-family: Arial;
-        }
-    </style>
-
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Ninja Corp!</title>
 </head>
 
 <body>
 
+    <div class="pink section">
+        <h2 class="white-text center">Ninja Corp</h2>
+    </div>
+    <div class="grey lighten-3 section grey-text" style="position: relative">
+        <p class="flow-text center">The Number ONE Ninja Company</p>
+        <a href="#modal" class="btn-floating btn-large halfway-fab pink modal-trigger">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h4 class="pink-text center">Add New Employee </h4>
+            <form>
+                <div class="input-field">
+                    <input type="text" id="name" placeholder="Employee Name">
+                </div>
+                <div class="input-field">
+                    <input type="text" id="parent" placeholder="Reports to...">
+                </div>
+                <div class="input-field">
+                    <input type="text" id="department" placeholder="Department">
+
+                </div>
+                <div class="input-field">
+                    <button class="btn pink white-text">Add Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="canvas"></div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>
-    <div class="canvas"></div>
 
     <script>
         var firebaseConfig = {
