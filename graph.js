@@ -5,7 +5,7 @@ const graphHeight = 400 - margin.top - margin.bottom;
 const svg = d3.select('.canvas')
     .append('svg')
     .attr('width', graphWidth + margin.left + margin.right)
-    .attr('height', graphWidth + margin.top, margin.bottom);
+    .attr('height', graphHeight + margin.top + margin.bottom);
 
 const graph = svg.append('g')
     .attr('width', graphWidth)
@@ -16,7 +16,7 @@ const graph = svg.append('g')
 const x = d3.scaleTime().range([0, graphWidth]);
 const y = d3.scaleLinear().range([graphHeight, 0]);
 
-// axis groups
+// axes groups
 const xAxisGroup = graph
     .append('g')
     .attr('class', 'x-axis')
@@ -29,8 +29,8 @@ const yAxisGroup = graph.append('g')
 const update = data => {
 
     // set scale domains
-    x.domain(d3.extent(data, d => { new Date(d.date) }));
-    y.domain(0, d3.max(data, d => d.distance));
+    x.domain(d3.extent(data, d => new Date(d.date)));
+    y.domain([0, d3.max(data, d => d.distance)]);
 
     // create axes
     const xAxis = d3.axisBottom(x)
