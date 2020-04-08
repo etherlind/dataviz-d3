@@ -10,7 +10,7 @@ const svg = d3.select('.canvas')
 const graph = svg.append('g')
     .attr('width', graphWidth)
     .attr('height', graphHeight)
-    .attr('tranform', `translate(${margin.left}, ${margin.top})`);
+    .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
 // scales
 const x = d3.scaleTime().range([0, graphWidth]);
