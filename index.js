@@ -47,7 +47,9 @@ const pack = d3.pack()
     .padding(5);
 
 const bubbleData = pack(rootNode).descendants();
-console.log(bubbleData);
+
+// create ordinal scale
+const color = d3.scaleOrdinal(['#d1c4e9', '#b39ddb', '#9575cd']);
 
 // join data and add group for each node
 const nodes = graph.selectAll('g')
@@ -60,5 +62,12 @@ nodes.append('circle')
     .attr('r', d => d.r)
     .attr('stroke', 'white')
     .attr('stroke-width', 2)
-    .attr('fill', 'purple');
+    .attr('fill', d => color(d.depth));
 
+nodes.filter(d => !d.children)
+    .append('text')
+    .attr('text-anchor', 'middle')
+    .attr('dy', '0.3em')
+    .attr('fill', 'white')
+    .style('font-size', d => d.value * 5)
+    .text(d => d.data.name);
